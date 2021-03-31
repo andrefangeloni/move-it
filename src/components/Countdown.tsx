@@ -7,7 +7,7 @@ import styles from '../styles/components/Countdown.module.css';
 let countdownTimeout: NodeJS.Timeout;
 
 const Countdown = () => {
-  const initialTime = 25 * 60;
+  const initialTime = 2;
 
   const { startNewChallenge } = React.useContext(ChallengesContext);
 
