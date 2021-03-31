@@ -3,6 +3,7 @@ import Head from 'next/head';
 
 import Profile from '../components/Profile';
 import Countdown from '../components/Countdown';
+import ChallengeBox from '../components/ChallengeBox';
 import ExperienceBar from '../components/ExperienceBar';
 import CompletedChallenges from '../components/CompletedChallenges';
 
@@ -23,7 +24,9 @@ const Home = () => (
         <Countdown />
       </div>
 
-      <div />
+      <div>
+        <ChallengeBox />
+      </div>
     </section>
   </div>
 );
