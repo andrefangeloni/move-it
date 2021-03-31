@@ -5,7 +5,7 @@ import styles from '../styles/components/Countdown.module.css';
 let countdownTimeout: NodeJS.Timeout;
 
 const Countdown = () => {
-  const initialTime = 0.05 * 60;
+  const initialTime = 25 * 60;
 
   const [time, setTime] = React.useState(initialTime);
   const [isActive, setIsActive] = React.useState(false);
