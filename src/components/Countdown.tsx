@@ -1,55 +1,25 @@
 import React from 'react';
 
-import { ChallengesContext } from '../contexts/ChallengeContext';
+import { CountdownContext } from '../contexts/CountdownContext';
 
 import styles from '../styles/components/Countdown.module.css';
 
-let countdownTimeout: NodeJS.Timeout;
-
 const Countdown = () => {
-  const initialTime = 2;
-
-  const { startNewChallenge } = React.useContext(ChallengesContext);
-
-  const [time, setTime] = React.useState(initialTime);
-  const [isActive, setIsActive] = React.useState(false);
-  const [hasFinished, setHasFinished] = React.useState(false);
-
-  const minutes = Math.floor(time / 60);
-  const seconds = time % 60;
+  const {
+    minutes,
+    seconds,
+    isActive,
+    hasFinished,
+    resetCountdown,
+    startCountdown,
+  } = React.useContext(CountdownContext);
 
   const [minuteLeft, minuteRight] = String(minutes).padStart(2, '0').split('');
   const [secondLeft, secondRight] = String(seconds).padStart(2, '0').split('');
 
-  const startCountdown = () => {
-    setIsActive(true);
-  };
-
-  React.useEffect(() => {
-    if (isActive && time > 0) {
-      countdownTimeout = setTimeout(() => {
-        setTime(time - 1);
-      }, 1000);
-    } else if (isActive && !time) {
-      setIsActive(false);
-      setHasFinished(true);
-      startNewChallenge();
-    }
-  }, [isActive, time]);
-
-  const resetCountdown = () => {
-    clearTimeout(countdownTimeout);
-    setIsActive(false);
-    setTime(initialTime);
-  };
-
   const ButtonCicle = () => {
     if (hasFinished) {
-      return (
-        <div className={styles.countdownFinished}>
-          Ciclo encerrado
-        </div>
-      );
+      return <div className={styles.countdownFinished}>Ciclo encerrado</div>;
     }
 
     if (isActive) {

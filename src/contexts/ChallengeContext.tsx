@@ -20,6 +20,7 @@ interface ChallengesContextData {
   challengesDone: number;
   activeChallenge: Challenge;
   resetChallenge: () => void;
+  completeChallenge: () => void;
   startNewChallenge: () => void;
 }
 
@@ -46,6 +47,25 @@ const ChallengesProvider = ({ children }: ChallengesProviderProps) => {
     setActiveChallenge(null);
   };
 
+  const completeChallenge = () => {
+    if (!activeChallenge) {
+      return;
+    }
+
+    const { amount } = activeChallenge;
+
+    let finalXp = currentXp + amount;
+
+    if (finalXp >= xpToNextLevel) {
+      finalXp -= xpToNextLevel;
+      levelUp();
+    }
+
+    setCurrentXp(finalXp);
+    setActiveChallenge(null);
+    setChallengesDone(challengesDone + 1);
+  };
+
   return (
     <ChallengesContext.Provider value={{
       level,
@@ -55,6 +75,7 @@ const ChallengesProvider = ({ children }: ChallengesProviderProps) => {
       challengesDone,
       resetChallenge,
       activeChallenge,
+      completeChallenge,
       startNewChallenge,
     }}
     >
