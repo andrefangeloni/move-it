@@ -51,6 +51,7 @@ const CountdownProvider = ({ children }: CountdownProviderProps) => {
     clearTimeout(countdownTimeout);
     setIsActive(false);
     setTime(initialTime);
+    setHasFinished(false);
   };
 
   return (
