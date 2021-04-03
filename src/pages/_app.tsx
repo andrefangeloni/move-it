@@ -1,13 +1,7 @@
 import React from 'react';
 
-import ChallengesProvider from '../contexts/ChallengeContext';
-
 import '../styles/global.css';
 
-const MyApp = ({ Component, pageProps }) => (
-  <ChallengesProvider>
-    <Component {...pageProps} />
-  </ChallengesProvider>
-);
+const MyApp = ({ Component, pageProps }) => <Component {...pageProps} />;
 
 export default MyApp;
