@@ -34,6 +34,10 @@ const ChallengesProvider = ({ children }: ChallengesProviderProps) => {
 
   const xpToNextLevel = ((level + 1) * 4) ** 2;
 
+  React.useEffect(() => {
+    Notification.requestPermission();
+  }, []);
+
   const levelUp = () => setLevel(level + 1);
 
   const startNewChallenge = () => {
@@ -41,6 +45,14 @@ const ChallengesProvider = ({ children }: ChallengesProviderProps) => {
     const challenge = challenges[randomChallengeIndex];
 
     setActiveChallenge(challenge);
+
+    new Audio('/notification.mp3').play();
+
+    if (Notification.permission === 'granted') {
+      new Notification('Novo desafio 🎉', {
+        body: `Valendo ${challenge.amount}xp!`,
+      });
+    }
   };
 
   const resetChallenge = () => {

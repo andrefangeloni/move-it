@@ -27,9 +27,11 @@
         "tsx": "never"
       }
     ],
+    "no-new": "off",
     "no-console": "warn",
     "react/prop-types": "off",
     "no-use-before-define": "off",
+    "react/jsx-props-no-spreading": "off",
     "@typescript-eslint/no-use-before-define": "warn",
     "react/jsx-filename-extension": [
       1,
