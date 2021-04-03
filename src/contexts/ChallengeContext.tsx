@@ -16,8 +16,10 @@ interface ChallengesContextData {
   level: number;
   currentXp: number;
   levelUp: () => void;
+  xpToNextLevel: number;
   challengesDone: number;
   activeChallenge: Challenge;
+  resetChallenge: () => void;
   startNewChallenge: () => void;
 }
 
@@ -29,6 +31,8 @@ const ChallengesProvider = ({ children }: ChallengesProviderProps) => {
   const [challengesDone, setChallengesDone] = React.useState(0);
   const [activeChallenge, setActiveChallenge] = React.useState(null);
 
+  const xpToNextLevel = ((level + 1) * 4) ** 2;
+
   const levelUp = () => setLevel(level + 1);
 
   const startNewChallenge = () => {
@@ -38,12 +42,18 @@ const ChallengesProvider = ({ children }: ChallengesProviderProps) => {
     setActiveChallenge(challenge);
   };
 
+  const resetChallenge = () => {
+    setActiveChallenge(null);
+  };
+
   return (
     <ChallengesContext.Provider value={{
       level,
       levelUp,
       currentXp,
+      xpToNextLevel,
       challengesDone,
+      resetChallenge,
       activeChallenge,
       startNewChallenge,
     }}

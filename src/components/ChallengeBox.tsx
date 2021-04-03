@@ -5,7 +5,9 @@ import { ChallengesContext } from '../contexts/ChallengeContext';
 import styles from '../styles/components/ChallengeBox.module.css';
 
 const ChallengeBox = () => {
-  const { activeChallenge } = React.useContext(ChallengesContext);
+  const { activeChallenge, resetChallenge } = React.useContext(
+    ChallengesContext,
+  );
 
   return (
     <div className={styles.challengeBoxContainer}>
@@ -14,13 +16,20 @@ const ChallengeBox = () => {
           <header>{`Ganhe ${activeChallenge.amount} xp`}</header>
 
           <main>
-            <img src={`icons/${activeChallenge.type}.svg`} alt="Challenge Type" />
+            <img
+              src={`icons/${activeChallenge.type}.svg`}
+              alt="Challenge Type"
+            />
             <strong>Novo desafio</strong>
             <p>{activeChallenge.description}</p>
           </main>
 
           <footer>
-            <button type="button" className={styles.challengeFailedButton}>
+            <button
+              type="button"
+              className={styles.challengeFailedButton}
+              onClick={() => resetChallenge()}
+            >
               Falhei
             </button>
             <button type="button" className={styles.challengeSucceededButton}>
