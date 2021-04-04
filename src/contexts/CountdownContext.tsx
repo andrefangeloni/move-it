@@ -20,7 +20,7 @@ interface CountdownProviderProps {
 export const CountdownContext = React.createContext({} as CountdownContextData);
 
 const CountdownProvider = ({ children }: CountdownProviderProps) => {
-  const initialTime = 2;
+  const initialTime = 25 * 60;
 
   const { startNewChallenge } = React.useContext(ChallengesContext);
 
